@@ -4,7 +4,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class UUIDSpecs extends FlatSpec with Matchers {
 
-  "uuid" should "render guid" in {
+  "uuid" should "render in valid format" in {
     val id = uuid()
 
     id should fullyMatch regex """[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"""
