@@ -1,5 +1,5 @@
 package com.github.jancajthaml
-
+/*
 import org.scalameter.api._
 import org.scalameter.picklers.Implicits._
 
@@ -36,4 +36,4 @@ object RegressionPerformance extends Bench.OfflineReport {
     }
   }
 
-}
+}*/
