@@ -1,7 +1,6 @@
 package com.github.jancajthaml
 
-import collection.mutable.Stack
-import org.scalatest._
+import org.scalatest.{FlatSpec, Matchers}
 
 class UUIDSpecs extends FlatSpec with Matchers {
 
@@ -11,7 +10,7 @@ class UUIDSpecs extends FlatSpec with Matchers {
     id should fullyMatch regex """[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"""
   }
 
-  it should "should have low gaps when used as shard key" in {
+  it should "should have low gaps" in {
     val arr = new Array[Int](601)
     def fn = (BigInt.apply(uuid() replaceAll ("[-]", ""), 16) % 601).toInt
 

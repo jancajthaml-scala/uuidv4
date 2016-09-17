@@ -29,11 +29,10 @@ object uuid extends (() => String) {
    * @return uuid4
    */
   def apply(): String = {
-    
-    val byte:Array[Byte] = new Array[Byte](16)
-    x.inc = x.inc + 1
+    val byte: Array[Byte] = new Array[Byte](16)
+    x.inc = (x.inc + 1) % Int.MaxValue
     val time = (System.currentTimeMillis / 1000).asInstanceOf[Int]
-    
+
     //saturate byte with random values
     x.random.nextBytes(byte)
 
@@ -57,44 +56,6 @@ object uuid extends (() => String) {
     x.asHex(byte(13) & 0xff) +
     x.asHex(byte(14) & 0xff) +
     x.asHex(byte(15) & 0xff)
-
-    
-
-    //val time = (System.currentTimeMillis / 1000)
-    //println("time - " + time)
-    //var MACHINE_ID = scala.util.Random.nextInt()
-    //println("MACHINE_ID - " + MACHINE_ID)
-    //var pid = (ProcessHandle.current().getPid() % 0xFFFF)
-    //println("pid - " + pid)
-
-    
-
-    //println("inc - " + inc)
-
-    //"XXX"
-/*
-    //(data, bits, signed, forceBigEndian)
-    var time4Bytes = BinaryParser.encodeInt(time, 32, true, true)
-
-    //println("MACHINE_ID" + MACHINE_ID)
-
-    /* for time-based ObjectID the bytes following the time will be zeroed */
-    var machine3Bytes = BinaryParser.encodeInt(MACHINE_ID, 24, false)
-    var pid2Bytes = BinaryParser.fromShort(ProcessHandle.current().getPid() % 0xFFFF)
-    
-
-/*
-    ObjectID.prototype.get_inc = function() {
-      return ObjectID.index = (ObjectID.index + 1) % 0xFFFFFF;
-    };
-    */
-
-    //var index3Bytes = BinaryParser.encodeInt(this.get_inc(), 24, false, true)
-    var index3Bytes = BinaryParser.encodeInt(index, 24, false, true)
-
-    time4Bytes + machine3Bytes + pid2Bytes + index3Bytes
-    */
-
   }
 
 }
