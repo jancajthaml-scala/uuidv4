@@ -10,16 +10,15 @@ class UUIDSpecs extends FlatSpec with Matchers {
     id should fullyMatch regex """[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"""
   }
 
-  it should "should have low gaps" in {
+  it should "have normal distribution" in {
     val arr = new Array[Int](601)
     def fn = (BigInt.apply(uuid() replaceAll ("[-]", ""), 16) % 601).toInt
 
-    var it = 0
-    while (it < 10000) {
+    (0 to 10000).foreach { i => {
       val res = Math.abs(fn)
       arr(res) = (arr(res) + 1)
-      it = it + 1
-    }
+    } }
+
     val list = arr.toList
 
     list.min should be <= (10)

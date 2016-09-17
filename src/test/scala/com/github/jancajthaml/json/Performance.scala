@@ -2,7 +2,7 @@ package com.github.jancajthaml
 
 import org.scalameter.api.{Measurer, Bench, Gen, exec}
 
-object RegressionMemort extends Bench.OfflineReport {
+object RegressionResources extends Bench.OfflineReport {
 
   override def measurer = new Measurer.MemoryFootprint
 
@@ -15,7 +15,7 @@ object RegressionMemort extends Bench.OfflineReport {
         exec.maxWarmupRuns -> 5,
         exec.benchRuns -> 5,
         exec.independentSamples -> 1
-      ) in { sz => { for (a <- 0 until sz) { uuid() } } }
+      ) in { sz => { (0 to sz).foreach { x => { uuid() } } } }
     }
   }
 }
@@ -31,7 +31,7 @@ object RegressionPerformance extends Bench.OfflineReport {
         exec.independentSamples -> 1,
         exec.outliers.covMultiplier -> 1.5,
         exec.outliers.suspectPercent -> 40
-      ) in { sz => { for (a <- 0 until sz) { uuid() } } }
+      ) in { sz => { (0 to sz).foreach { x => { uuid() } } } }
     }
   }
 

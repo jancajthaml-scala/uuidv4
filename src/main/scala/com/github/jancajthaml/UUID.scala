@@ -6,13 +6,9 @@ package com.github.jancajthaml
   * @author jan.cajthaml
   */
 private[jancajthaml] object x {
-
-  import java.security.SecureRandom
-
-  val random = new SecureRandom()
+  val random = new java.security.SecureRandom()
   val asHex = Array.tabulate(256)(i => Integer.toHexString(0x100 | i).substring(1))
   var inc = random.nextInt()
-
 }
 
 /**
