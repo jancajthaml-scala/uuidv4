@@ -11,7 +11,7 @@ private[jancajthaml] object x {
 
   val random = new SecureRandom()
   val asHex = Array.tabulate(256)(i => Integer.toHexString(0x100 | i).substring(1))
-  var inc = scala.util.Random.nextInt()
+  var inc = random.nextInt()
 
 }
 
