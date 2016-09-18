@@ -9,4 +9,4 @@ notifications:
     recipients:
       - jan.cajthaml@gmail.com
 jdk:
-  - oraclejdk9
+  - oraclejdk8
