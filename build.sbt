@@ -1,13 +1,10 @@
-
-
 import sbt.Keys._
 
 name := "uuid"
 
+version in Global := "1.0.0"
 
-version in Global := "0.1.0-SNAPSHOT"
-
-description := "uuid4 generator"
+description := "fast uuid generator"
 
 scalaVersion in Global := "2.11.8"
 
@@ -33,7 +30,6 @@ lazy val test = Project(
     ),
     libraryDependencies ++= Seq(
       "com.storm-enroute" %% "scalameter" % "0.7",
-      "org.scalactic" %% "scalactic" % "3.0.0",
       "org.scalatest" %% "scalatest" % "3.0.0" % "test"
     ),
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
