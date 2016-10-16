@@ -8,7 +8,7 @@ package com.github.jancajthaml
 private[jancajthaml] object x {
   val random = new java.security.SecureRandom()
   val asHex = Array.tabulate(256)(i => Integer.toHexString(0x100 | i).substring(1))
-  var inc = random.nextInt()
+  var inc: Int = random.nextInt() & 0xff
 }
 
 /**
@@ -26,8 +26,7 @@ object uuid extends (() => String) {
    */
   def apply(): String = {
     val byte: Array[Byte] = new Array[Byte](16)
-    x.inc = (x.inc + 1) % Int.MaxValue
-    val time = (System.currentTimeMillis / 1000).asInstanceOf[Int]
+    x.inc = (x.inc + 1) & 0xff
 
     //saturate byte with random values
     x.random.nextBytes(byte)
@@ -43,7 +42,7 @@ object uuid extends (() => String) {
     x.asHex(((byte(6) & 0x0f) | x.inc) & 0xff) +
     x.asHex(byte(7) & 0xff) +
     '-' +
-    x.asHex(((byte(8) & 0x3f) | time) & 0xff) +
+    x.asHex(((byte(8) & 0x3f) | 0x80) & 0xff) +
     x.asHex(byte(9) & 0xff) +
     '-' +
     x.asHex(byte(10) & 0xff) +
